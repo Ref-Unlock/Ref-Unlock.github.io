@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Ref-Unlock</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <!-- <link rel="icon" type="image/png" href="../img/newyork.ico"> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link href="css/twentytwenty.css" rel="stylesheet">
+    <link href="css/foundation.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Theme Stylesheets -->
+    <!-- <link href="css/theme.css" rel="stylesheet"> -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110862391-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-110862391-3');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h1 class="col-md-12 text-center" style="font-weight: bold;">
+                <!-- CityNeRF: Building NeRF at City Scale -->
+                <br>Reflections Unlock:<br>Geometry-Aware Reflection Disentanglement in 3D Gaussian Splatting for Photorealistic Scenes Rendering
+                <!-- <small>CVPR 2023</small> -->
+            </h1>
+            <!-- <h4 style="text-align:center">CVPR 2023</h4> -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="margin-bottom: 0.7em; margin-top:0.2em" class="authors">
+                    <a style="color:#000000;" href="">Jiayi Song†<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Zihan Ye†<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Qingyuan Zhou†<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://scholar.google.com/citations?user=H8Oli1YAAAAJ&hl=zh-CN&oi=sra">Weidong Yang<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="https://scholar.google.com/citations?user=skQROj8AAAAJ&hl=zh-CN&oi=ao">Ben Fei*<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Jingyi Xu<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Ying He<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a style="color:#000000;" href="">Wanli Ouyang<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+
+                <div style="margin-bottom: 0.5em;" class="affiliations">
+                    <a href="http://fudan.edu.cn/">Fudan University<sup>1</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="">The Chinese University of Hong Kong<sup>2</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+                    </br>
+                    <a href="">Nanyang Technological University<sup>3</sup></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                </div>
+
+                <div style="margin-bottom: 0.7em;" class="col-md-12 text-center">
+                    †denotes equal contribution
+                </div>
+
+                <div style="margin-bottom: 0.7em;" class="col-md-12 text-center">
+                    *denotes correspondant authors
+                </div>
+
+            </div>
+        </div>
+
+        <div style="margin-bottom: 0.7em;" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href=>
+                            <image src="./img/document.png" height="50px"><br>
+                                <h5><strong>Paper(TBD)</strong></h5>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Kallyelish/Ref-Unlock">
+                            <image src="./img/github.png" height="50px"><br>
+                                <h5><strong>Code</strong></h5>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 style="text-align: center; font-weight: bold;">
+                    Abstract
+                </h3>
+                <div style="text-align: center;">
+                    <img src="img/teaser.png" alt="overview" style="width: 85%; height: auto;">
+                </div>
+                <p class="text-justify">
+                    Accurately rendering scenes with reflective surfaces remains a significant challenge in novel view synthesis, as existing methods like Neural Radiance Fields (NeRF) and 3D Gaussian Splatting (3DGS) often misinterpret reflections as physical geometry, resulting in degraded reconstructions. Previous methods rely on incomplete and non-generalizable geometric constraints, leading to misalignment between the positions of Gaussian splats and the actual scene geometry. When dealing with real-world scenes containing complex geometry, the accumulation of Gaussians further exacerbates surface artifacts and results in blurred reconstructions. To address these limitations, in this work, we propose Ref-Unlock, a novel geometry-aware reflection modeling framework based on 3D Gaussian Splatting, which explicitly disentangles transmitted and reflected components to better capture complex reflections and enhance geometric consistency in real-world scenes. Our approach employs a dual-branch representation with high-order spherical harmonics to capture high-frequency reflective details, alongside a reflection removal module providing pseudo reflection-free supervision to guide clean decomposition. Additionally, we incorporate pseudo-depth maps and a geometry-aware bilateral smoothness constraint to enhance 3D geometric consistency and stability in decomposition. Extensive experiments demonstrate that Ref-Unlock significantly outperforms classical GS-based reflection methods and achieves competitive results with NeRF-based models, while enabling flexible vision foundation models (VFMs) driven reflection editing. Our method thus offers an efficient and generalizable solution for realistic rendering of reflective scenes.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3 style="text-align: center; font-weight: bold;">
+                    Framework
+                </h3>
+                <image src="img/Framework.png" class="img-responsive" alt="overview"><br>
+                <p class="text-justify">
+                    <strong>Overview of Ref-Unlock.</strong> Ref-Unlock extends 3D Gaussian Splatting (3DGS) to handle complex reflective phenomena such as mirrors and glass, which are inherently view-dependent and challenging for standard 3DGS to model. 
+                    It introduces reflection-specific parameters to explicitly disentangle reflected and transmitted components, including dual-branch color/opacity and a learned reflection map. 
+                    Additionally, we enhance representation capability by increasing spherical harmonics degree and leverage a reflection removal model and pseudo-depth supervision to improve disentanglement and geometric accuracy. 
+                    This unified design enables photorealistic rendering of reflective scenes with high-frequency, view-dependent effects.
+                </p>
+            </div>
+        </div> 
+
+
+        <div class="row">  
+            <div class="col-md-8 col-md-offset-2">
+                <h3 style="text-align: center; font-weight: bold;">
+                    Visual Comparisons
+                </h3> 
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row text-center">
+                <!-- 第一组 -->
+                <div class="col-md-6">
+                    <div class="twentytwenty-container">
+                        <img src="./img/cmp/mirror_3dgs.png" alt="Ref-Unlock" style="width: 100%; height: auto;">
+                        <img src="./img/cmp/mirror_our.png" alt="3D Gaussian Splatting" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+
+                <!-- 第二组 -->
+                <div class="col-md-6">
+                    <div class="twentytwenty-container">
+                        <img src="./img/cmp/tv_3dgs.png" alt="Ref-Unlock" style="width: 100%; height: auto;">
+                        <img src="./img/cmp/tv_our.png" alt="3D Gaussian Splatting" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+
+                <!-- 第三组 -->
+                <div class="col-md-6">
+                    <div class="twentytwenty-container">
+                        <img src="./img/cmp/art2_3dgs.png" alt="Ref-Unlock" style="width: 100%; height: auto;">
+                        <img src="./img/cmp/art2_our.png" alt="3D Gaussian Splatting" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+
+                <!-- 第四组 -->
+                <div class="col-md-6">
+                    <div class="twentytwenty-container">
+                        <img src="./img/cmp/art3_3dgs.png" alt="Ref-Unlock" style="width: 100%; height: auto;">
+                        <img src="./img/cmp/art3_our.png" alt="3D Gaussian Splatting" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+    </div>
+</body>
+
+	<script type="text/javascript">
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        }
+	</script>
+
+
+
+    <!-- Image Slider Javascripts -->
+    <script src="js/jquery.event.move.js"></script>
+    <script src="js/jquery.twentytwenty.js"></script>
+    <script>
+        $(window).on('load',function() {
+            $(".twentytwenty-container").twentytwenty();
+        });
+    </script>
+    <script>
+        $(function(){
+            $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.49, before_label: 'Before', after_label: 'After'});
+        });
+    </script>
+</html>
